@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabaseClient';
 import PlatformCard from '@/components/PlatformCard';
 import OverviewCard from '@/components/OverviewCard';
+import Header from '@/components/Header';
 
 export default async function HomePage() {
   const { data: stats, error } = await supabase.from('social_stats').select('*');
