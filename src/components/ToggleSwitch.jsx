@@ -1,47 +1,32 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export default function ToggleSwitch() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setDarkMode(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
+  useEffect(() => setMounted(true), []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+  if (!mounted) return null; // prevent SSR mismatch
+
+  const isDark = theme === 'dark' || (theme === 'system' && systemTheme === 'dark');
 
   return (
-    <div className="flex items-center justify-between w-full px-4 py-2">
-      <h1 className="text-sm font-semibold text-black dark:text-white">
+    <div className="flex items-center justify-between md:justify-normal md:gap-8 w-full px-4 py-2">
+      <h1 className="text-sm font-semibold text-black dark:text-gray-400">
         Dark Mode
       </h1>
 
       <label className="relative inline-block w-11 h-6 cursor-pointer">
-        {/* Invisible checkbox (peer) */}
         <input
           type="checkbox"
           className="sr-only peer"
-          checked={!darkMode}
-          onChange={() => setDarkMode(!darkMode)}
+          checked={isDark}
+          onChange={() => setTheme(isDark ? 'light' : 'dark')}
         />
-        {/* Switch Track + Knob */}
-        <div className="w-full h-full bg-gray-300 dark:bg-gradient-to-r dark:from-blue-500 dark:to-green-500 rounded-full transition-colors" />
+        <div className="w-full h-full bg-gray-300 dark:bg-gradient-to-r dark:from-blue-500 dark:to-green-500 rounded-full transition-colors hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-500" />
         <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white dark:bg-gray-800 rounded-full shadow-md transition-transform duration-300 peer-checked:translate-x-full" />
       </label>
     </div>

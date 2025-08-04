@@ -10,22 +10,29 @@ export default function OverviewCard({ data }) {
     youtube: '/assets/icons/icon-youtube.svg',
   };
 
-  // Format metric for display
   const formattedMetric = metric
     .split('_')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+  function formatNumber(val) {
+    if (val >= 10000) {
+      const num = val / 1000;
+      return (Number.isInteger(num) ? num : num.toFixed(1)) + 'k';
+    }
+    return val.toString();
+  }
+
   return (
-    <div className="bg-navy-50 dark:bg-dark-topBg p-6 rounded-2xl flex flex-col gap-4">
+    <div className="bg-navy-50 dark:bg-[#252b43] hover:bg-gray-300 dark:hover:bg-slate-600 p-6 rounded-2xl flex flex-col gap-4">
       <div className="flex justify-between items-center text-sm text-gray-400">
-        <span>{formattedMetric}</span>
+        <span className="text-gray-600 dark:text-gray-400 font-bold">{formattedMetric}</span>
         <img src={platformIcons[platform]} alt={`${platform} icon`} />
       </div>
 
       <div className="flex justify-between items-end">
-        <h3 className="text-2xl font-bold text-gray-950 dark:text-white font-inter">
-          {value.toLocaleString()}
+        <h3 className="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white font-inter">
+          {formatNumber(value)}
         </h3>
         <div className="flex items-center text-sm font-semibold">
           <img

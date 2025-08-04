@@ -14,12 +14,26 @@ export default async function HomePage() {
   const platformStats = stats.filter(stat => stat.type === 'platform');
   const overviewStats = stats.filter(stat => stat.type === 'overview');
 
+  // Sum followers/subscribers from platformStats
+  const total = platformStats.reduce((acc, cur) => acc + (cur.value || 0), 0);
+
+  // Reorder by platform: facebook > twitter > instagram > youtube
+  const order = ['facebook', 'twitter', 'instagram', 'youtube'];
+
+  const sortedPlatformStats = order
+    .map(platform => platformStats.find(stat => stat.platform === platform))
+    .filter(Boolean);
+
+  const sortedOverviewStats = order
+    .flatMap(platform => overviewStats.filter(stat => stat.platform === platform));
+
   return (
     <main className="grid gap-6 p-6 max-w-6xl mx-auto">
-      <Header />
+      <Header total={total} />
+
       {/* Platform Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {platformStats.map((card) => (
+        {sortedPlatformStats.map((card) => (
           <PlatformCard
             key={`${card.platform}-${card.username || card.label}`}
             data={card}
@@ -30,7 +44,7 @@ export default async function HomePage() {
       {/* Overview Cards */}
       <h2 className="text-xl font-bold mt-10">Overview - Today</h2>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {overviewStats.map((card) => (
+        {sortedOverviewStats.map((card) => (
           <OverviewCard
             key={`${card.platform}-${card.metric}`}
             data={card}
