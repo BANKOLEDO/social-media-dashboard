@@ -1,7 +1,3 @@
-Here’s a clean, finalized version of your `README.md` for the **Frontend Mentor - Social media dashboard with theme switcher** project, with placeholder notes removed and your project setup included:
-
----
-
 # Frontend Mentor - Social Media Dashboard with Theme Switcher Solution
 
 This is a solution to the [Social media dashboard with theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/social-media-dashboard-with-theme-switcher-6oY8ozp_H). This challenge helped improve my skills in responsive design, React component architecture, and implementing dark/light theme toggling.
