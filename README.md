@@ -1,7 +1,3 @@
-Here’s a clean, finalized version of your `README.md` for the **Frontend Mentor - Social media dashboard with theme switcher** project, with placeholder notes removed and your project setup included:
-
----
-
 # Frontend Mentor - Social Media Dashboard with Theme Switcher Solution
 
 This is a solution to the [Social media dashboard with theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/social-media-dashboard-with-theme-switcher-6oY8ozp_H). This challenge helped improve my skills in responsive design, React component architecture, and implementing dark/light theme toggling.
@@ -70,7 +66,6 @@ Desktop View
 ### What I Learned
 
 * Dynamic theme switching using Tailwind’s dark mode
-* Implementing Supabase auth and protecting routes with middleware
 * Using local JSON files for data and managing state
 * Optimizing reusable components and conditional rendering
 * Tailwind's utility classes for letter-spacing (`tracking-wide`, etc.)
@@ -94,10 +89,8 @@ I’d like to continue improving in these areas:
 
 ## Author
 
-* GitHub – [@devolabanks](https://github.com/devolabanks)
-* Frontend Mentor – [@devolabanks](https://www.frontendmentor.io/profile/devolabanks)
+* GitHub – [@devolabanks](https://github.com/BANKOLEDO)
+* Frontend Mentor – [@devolabanks](https://www.frontendmentor.io/profile/BANKOLEDO)
 * Twitter – [@dev\_olabanks](https://twitter.com/dev_olabanks)
 
 ---
-
-Let me know if you'd like me to generate a professional-looking `screenshot.jpg` using your current dashboard design and the active states image you uploaded.
